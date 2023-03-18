@@ -32,6 +32,21 @@ public class JpaMain {
         }
 
 
+        try {
+            Member member = new Member();
+            member.setName("helloC");
+            Member findMember = em.find(Member.class, "helloC");
+            findMember.setName("helloD");
+
+            transaction.commit();;
+        } catch (Exception e){
+            transaction.rollback();
+        }finally{
+            em.close();;
+        }
+
+
+
         emf.close();
 
 
